@@ -1,23 +1,31 @@
 import axios from 'axios';
 
-const baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const fetchVehicles = async () => {
-  const getVehicle = await axios.get(
-    `${baseUrl}/GetMakesForVehicleType/car?format=json`,
-  );
-  const data = getVehicle.data.Results;
+  try {
+    const getVehicle = await axios.get(
+      `${baseUrl}/GetMakesForVehicleType/car?format=json`,
+    );
+    const data = getVehicle.data.Results;
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error('Error fetching vehicles:', error);
+    throw new Error('Failed to fetch vehicle makes.');
+  }
 };
 
 export const fetchModels = async (makeId: string, year: string) => {
-  const getModels = await axios.get(
-    `${baseUrl}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
-  );
-  const data = getModels.data.Results;
+  try {
+    const getModels = await axios.get(
+      `${baseUrl}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
+    );
+    const data = getModels.data.Results;
 
-  console.log('💖 ~ fetchModels ~ getModels:', getModels);
-  console.log('💖 ~ fetchModels ~ data:', data);
-  return data;
+    return data;
+  } catch (error) {
+    console.error('Error fetching models:', error);
+    throw new Error('Failed to fetch models.');
+  }
 };

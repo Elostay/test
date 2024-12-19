@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a test task for Develops Today
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/Elostay/test.git
+#and
+npm i
+#and
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Home Page**:
 
-## Learn More
+  - Users can filter cars based on their make and year.
+  - Interactive UI with responsive design.
 
-To learn more about Next.js, take a look at the following resources:
+- **Result Page**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - Displays the results of the query based on the selected make and year.
+  - Accessible via the route `/result/makeid/year`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Dynamic Data Handling**:
+  - API requests are managed in the `api` folder.
+  - Data fetched from the backend includes non-unique IDs, so `uid` is used to generate unique keys for rendering.
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js**: For server-side rendering and routing.
+- **TypeScript**: For type safety and enhanced developer experience.
+- **Tailwind CSS**: For responsive and modern styling.
+- **Material-UI (MUI)**: For pre-built, customizable components.
+- **React-Spinners**: For elegant loading animations.
+- **Axios**: For making API requests.
+- **uid**: To handle non-unique IDs from the backend.
+- **Prettier**: For consistent code formatting.
+- **ESLint**: For maintaining high code quality.

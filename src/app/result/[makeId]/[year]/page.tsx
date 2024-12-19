@@ -1,10 +1,9 @@
-import { fetchModels, fetchVehicles } from '@/api/fetchVehicle';
-import { FC } from 'react';
+import { fetchVehicles } from '@/api/fetchVehicle';
+import CarsList from '@/app/components/CarsList';
+import { Params } from '@/interfaces/interfaces';
+import { FC, Suspense } from 'react';
+import { CircleLoader } from 'react-spinners';
 
-interface Params {
-  makeId: string;
-  year: string;
-}
 interface ResultPageProps {
   params: Params;
 }
@@ -12,22 +11,26 @@ interface ResultPageProps {
 export const generateStaticParams = async (): Promise<Params[]> => {
   const makes = await fetchVehicles();
 
-  return makes
-    .filter((make: Params) => make.makeId && make.year)
-    .map((make: Params) => ({
-      makeId: make.makeId.toString(),
-      year: make.year.toString(),
-    }));
+  return makes.map((make: Params) => ({
+    makeId: make.makeId,
+    year: make.year,
+  }));
 };
 
-const ResultPage: FC<ResultPageProps> = ({ params }) => {
+const ResultPage: FC<ResultPageProps> = async (props) => {
+  const params = await props.params;
   const { makeId, year } = params;
+
   return (
-    <div>
-      <h1>Результати</h1>
-      <p>Make ID: {makeId}</p>
-      <p>Year: {year}</p>
-    </div>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center absolute top-0 left-0 w-full h-full ">
+          <CircleLoader color="#ffffff" />
+        </div>
+      }
+    >
+      <CarsList makeId={makeId} year={year} />
+    </Suspense>
   );
 };
 
