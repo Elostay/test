@@ -5,7 +5,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const fetchVehicles = async () => {
   try {
     const getVehicle = await axios.get(
-      `${baseUrl}/GetMakesForVehicleType/car?format=json`,
+      `${baseUrl}/GetMakesForVehicleType/car?format=json`
     );
     const data = getVehicle.data.Results;
 
@@ -19,7 +19,7 @@ export const fetchVehicles = async () => {
 export const fetchModels = async (makeId: string, year: string) => {
   try {
     const getModels = await axios.get(
-      `${baseUrl}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
+      `${baseUrl}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
     );
     const data = getModels.data.Results;
 

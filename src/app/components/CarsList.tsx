@@ -48,7 +48,9 @@ const CarsList: FC<Params> = ({ makeId, year }) => {
           );
         })
       ) : (
-        <li className="text-3xl">No cars available.</li>
+        <li className="text-3xl flex items-center justify-center absolute top-0 left-0 w-full h-full ">
+          No cars available.
+        </li>
       )}
     </ul>
   );
